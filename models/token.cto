@@ -19,23 +19,66 @@ abstract participant Business identified by email {
 participant CentralBank extends Business {
   o Double totalIssueToken
 }
-
 participant Regulator extends Business {
 }
-
 /**
  * A Company is a type of participant in the network
  */
 participant Company extends Business {
+  o Integer state //用户状态
+  o String certificateId
+  --> Protocol[] protocol
+  --> Qulification[] qulification
 }
+participant Administrator identified by adminId {
+  o String adminId
+  o Integer level
+}
+participant Publisher extends Company {
 
-
+}
 
 /**
  * A User is a type of participant in the network
  */
 participant User extends Business {
+  o Integer state
+  --> Protocol[] protocol
 }
+asset Qulification identified by qulificationId {
+  o String qulificationId
+  o Integer qulificationType
+  o String fileId
+}
+asset Protocol identified by protocolId {
+  o String protocolId
+  o Integer protocolType
+}
+
+
+asset Complaint identified by complaintId {
+  o String complaintId
+  o String fromEmail
+  o String toEmail
+  o String complaintServiceId
+  o Integer complaintType
+  o String[] approveInfo
+  o Integer approveState
+  o Integer punishmentState
+}
+
+asset AbnormalDetection identified by abnormalId{
+
+  o String abnormalId
+  o Integer abnormalType
+  o String[] fromUsersEmail
+  o String[] auditInfo
+  o Integer auditState
+  o Integer punishmentState
+}
+
+
+
 
 asset IssueTokenSign identified by issueTokenSignId {
   o String issueTokenSignId  //发币请求ID
@@ -52,6 +95,21 @@ asset UserTokenRecharge identified by tokenRechargeID {
   --> User user
 }
 
+
+
+transaction Penalty{
+  o String PenaltyId
+  o Double penaltyNum
+  o String toUsersEmail
+  --> CentralBank bank
+}
+
+transaction TransactionBack{
+  o String fromEmail
+  o String toEmail
+  o String transactionBackNum
+  o String transactionBackId
+}
 
 
 transaction ConfirmSign1B {
