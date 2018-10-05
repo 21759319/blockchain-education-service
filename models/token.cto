@@ -72,9 +72,11 @@ asset AbnormalDetection identified by abnormalId{
   o String abnormalId
   o Integer abnormalType
   o String[] fromUsersEmail
-  o String[] auditInfo
+  o String[] auditor
+  o Integer[] auditInfo
   o Integer auditState
   o Integer punishmentState
+  o Double transferNum
 }
 
 
@@ -151,6 +153,7 @@ transaction TokenTransferC_C {
   o String[] logs optional
   o Double transferNum
   o String transferID
+  o DateTime transactionTimestamp
     --> Company from
     --> Company to
 }
@@ -162,6 +165,15 @@ transaction IssueToken2 {
   o Double tokenNum
   o String issueID
   --> CentralBank issuer
+}
+
+
+transaction ReviewTransaction{
+
+  o String email
+  o DateTime begin
+  o DateTime end 
+  
 }
 
 
@@ -182,6 +194,27 @@ transaction InitService {
 
 transaction InitUser {
 }
+
+
+transaction ChangeAbnormal{
+
+  o String abnormalId
+  o String auditor
+  o Integer auditInfo
+  o Integer isFinish
+  o String nextAuditor
+  o String[] punishmentIds
+
+}
+
+
+transaction ReviewAbnormal{
+
+  o String 
+  
+}
+
+
 
 asset Contract identified by contractID {
   o String contractID  //权益分配ID
