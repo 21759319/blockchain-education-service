@@ -1,0 +1,10 @@
+/** Sample queries for Commodity Trading business network
+*/
+
+query selectTokenTransferByCompany {
+  description: "Select Transfer by company"
+  statement:
+      SELECT token.TokenTransferC_C
+          WHERE (transactionTimestamp >= _$beginDate AND transactionTimestamp <= _$endDate AND ( from == _$company OR to == _$company))
+}
+
