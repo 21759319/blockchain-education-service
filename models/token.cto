@@ -195,6 +195,13 @@ transaction InitService {
 transaction InitUser {
 }
 
+transaction InitComplaint{
+  o String complaintId
+  o String fromEmail
+  o String toEmail
+  o String complaintServiceId
+  o Integer complaintType
+}
 
 transaction ChangeAbnormal{
 
@@ -229,5 +236,13 @@ transaction UserConsumeService {
   --> User user
   // --> Company company
   // --> CentralBank bank
+}
+
+transaction processComplaint {
+  o String adminId
+  o String complaintId
+  o String approveResult
+  o CompaintState
+  --> Penalty penalty
 }
 
