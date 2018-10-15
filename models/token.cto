@@ -214,7 +214,7 @@ transaction SealAccount{
 transaction UnsealedAccount {
     o String[] logs
     o String email
-    //o String unsealTime
+    // o String unsealTime
 }
 
 
