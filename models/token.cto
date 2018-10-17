@@ -42,6 +42,8 @@ participant Publisher extends Company {
  * A User is a type of participant in the network
  */
 participant User extends Business {
+  
+  //-1封号  
   o Integer state
   --> Protocol[] protocol
 }
@@ -253,4 +255,5 @@ transaction processComplaint {
   o String approveResult
   o String CompaintState
 }
+
 
