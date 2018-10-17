@@ -129,7 +129,7 @@ transaction ConfirmSign2R {
 }
 
 transaction UserRecharge {
-  o String[] logs optional  
+  o String[] logs optional
   o Double tokenNum   //用户充值金额
   o String rechargeID
   --> User user
@@ -137,13 +137,13 @@ transaction UserRecharge {
 
 transaction CheckUserRecharge {
   o String[] logs optional   //确认用户充值成功
-  --> UserTokenRecharge rechargeID 
+  --> UserTokenRecharge rechargeID
   //--> CentralBank bank    硬编码bank
 }
 
 transaction RejectUserRecharge {
   o String[] logs optional   //确认用户充值失败
-  --> UserTokenRecharge rechargeID 
+  --> UserTokenRecharge rechargeID
 }
 
 /**
@@ -172,8 +172,8 @@ transaction ReviewTransaction{
 
   o String email
   o DateTime begin
-  o DateTime end 
-  
+  o DateTime end
+
 }
 
 
@@ -213,7 +213,16 @@ transaction ChangeAbnormal{
   o String[] punishmentIds
 
 }
-
+transaction SealAccount{
+    o String[] logs
+    o String email
+    //o String sealTime
+ }
+transaction UnsealedAccount {
+    o String[] logs
+    o String email
+    // o String unsealTime
+}
 
 
 asset Contract identified by contractID {
@@ -225,13 +234,13 @@ asset Contract identified by contractID {
 asset Service identified by serviceID {
   o String serviceID  //课程ID
   o String serviceName  //课程名称
-  o Double servicePrice  //课程价格 
+  o Double servicePrice  //课程价格
   --> Company company  //课程提供商
 }
 
 transaction UserConsumeService {
   o String[] logs optional   //用户购买某种服务
-  --> Service serviceID 
+  --> Service serviceID
   // --> Contract contractID  硬编码
   --> User user
   // --> Company company
@@ -245,4 +254,3 @@ transaction processComplaint {
   o CompaintState
   --> Penalty penalty
 }
-
