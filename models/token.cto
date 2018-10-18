@@ -64,8 +64,9 @@ asset Complaint identified by complaintId {
   o String toEmail
   o String complaintServiceId
   o Integer complaintType
-  o String[] approveInfo
-  o Integer approveState
+  o String[] adminId
+  o Integer[] approveInfo
+  o Integer complaintState
   o Integer punishmentState
 }
 
@@ -205,6 +206,7 @@ transaction InitComplaint{
   o Integer complaintType
 }
 
+
 transaction ChangeAbnormal{
 
   o String abnormalId
@@ -249,11 +251,12 @@ transaction UserConsumeService {
   // --> CentralBank bank
 }
 
-transaction processComplaint {
+transaction ProcessComplaint {
   o String adminId
   o String complaintId
-  o String approveResult
-  o String CompaintState
+  o Integer approveResult
+  o Integer isFinish default=0//
+  o String[] punishment
 }
 
 
