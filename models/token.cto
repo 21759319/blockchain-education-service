@@ -242,7 +242,6 @@ transaction processComplaint {
   o String adminId
   o String complaintId
   o String approveResult
-  o CompaintState
-  --> Penalty penalty
+  o String CompaintState
 }
 
